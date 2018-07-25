@@ -1,0 +1,50 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { ListViewComponent } from './list-view/list-view.component';
+import { PriceChartComponent} from './price-chart/price-chart.component';
+import { FavListComponent} from './fav-list/fav-list.component';
+import { ListcurrencyService } from './listcurrency.service';
+//import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { StorageServiceModule} from 'angular-webstorage-service';
+import {RouterModule,Routes} from '@angular/router';
+// import { ChartModule } from 'angular-highcharts';
+import { DataTablesModule } from 'angular-datatables';
+
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ListViewComponent,
+    PriceChartComponent,
+    FavListComponent
+  ],
+  imports: [
+    BrowserModule,
+    StorageServiceModule,
+    HttpClientModule,
+    Ng2OrderModule,
+    NgxPaginationModule,
+    IonRangeSliderModule,
+
+    AngularFontAwesomeModule,
+    DataTablesModule,
+    RouterModule.forRoot([
+      {path :'pricechart/:id', component: PriceChartComponent},
+      {path :'listView', component: ListViewComponent},
+      {path :'favView', component: FavListComponent},
+      {path :'',pathMatch: 'full', component: FavListComponent}
+    
+    ])
+  ],
+  providers: [ListcurrencyService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

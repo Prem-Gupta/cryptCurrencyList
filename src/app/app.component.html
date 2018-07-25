@@ -1,0 +1,50 @@
+<div style="text-align: center;">
+<div class="container-fluid">
+    <div style="text-align: center">
+        <div class="container-fluid">
+            <div class="row header">
+                <div class="col-lg-12">
+                    <h3 style="color: white;">Crypto Currency Application</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+              area-expanded="false">
+              <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+  
+            </button>
+  
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a [routerLink]="['/listView']">List Coin</a>
+              </li>
+              <li>
+                <a [routerLink]="['/favView']">Favourite Coin</a>
+              </li>
+            </ul>
+  
+          </div>
+  
+        </div>
+  
+      </nav>
+
+      
+    </div>     
+
+</div>
+<br />
+<router-outlet></router-outlet>
+
+
+

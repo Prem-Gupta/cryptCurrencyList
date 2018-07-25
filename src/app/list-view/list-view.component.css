@@ -1,0 +1,7 @@
+.fa-star-o {
+    color: #ccc;
+}
+
+.fa-star-o.active {
+    color: deeppink;
+}
