@@ -37,11 +37,11 @@ import { DataTablesModule } from 'angular-datatables';
     AngularFontAwesomeModule,
     DataTablesModule,
     RouterModule.forRoot([
-      {path :'pricechart/:id', component: PriceChartComponent},
+      {path :'priceChart/:id', component: PriceChartComponent},
       {path :'listView', component: ListViewComponent},
       {path :'favView', component: FavListComponent},
       {path :'',pathMatch: 'full', component: FavListComponent}
-    
+
     ])
   ],
   providers: [ListcurrencyService],

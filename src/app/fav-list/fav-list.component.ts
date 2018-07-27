@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ListcurrencyService } from '../listcurrency.service';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { LOCAL_STORAGE } from 'angular-webstorage-service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ListcurrencyService} from '../listcurrency.service';
+import {Observable} from 'rxjs';
+import {map, catchError} from 'rxjs/operators';
+import {LOCAL_STORAGE} from 'angular-webstorage-service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-fav-list',
@@ -18,10 +18,11 @@ export class FavListComponent implements OnInit {
   public allCurrency = [];
   public key = 'id';
   public myItem = [];
-  public favourtiCoin =[];
- 
+  public favourtiCoin = [];
 
-  constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) { }
+
+  constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) {
+  }
 
   ngOnInit() {
 
@@ -32,7 +33,10 @@ export class FavListComponent implements OnInit {
           this.arr.push(this.allCurrency[element]);
         }
         this.myItem = JSON.parse(localStorage.getItem(this.key));
-        this.favourtiCoin = this.arr.filter((word) =>this. myItem.includes(word.id));
+
+        if(this.myItem) {
+          this.favourtiCoin = this.arr.filter((word) => this.myItem.includes(word.id));
+        }
       },
       error => {
         console.log(error);
@@ -40,10 +44,6 @@ export class FavListComponent implements OnInit {
     )
 
   }
-
- 
- 
-    
 
 
 }

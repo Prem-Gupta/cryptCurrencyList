@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ListcurrencyService } from '../listcurrency.service';
-import { Chart } from 'chart.js';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ListcurrencyService} from '../listcurrency.service';
+import {Chart} from 'chart.js';
 // import {Observable} from 'rxjs';
-
 
 
 @Component({
@@ -19,59 +18,92 @@ export class PriceChartComponent implements OnInit {
   chart = [];
   timelines = [];
   date_1 = [];
-  public TIME_INTERVAL = 3600 * 1000;
+  public TIME_INTERVAL = 3000;
   public TIMELINE_LENGTH = 12;
-  constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) { }
+
+  constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) {
+  }
 
   ngOnInit() {
     this._init();
+    this.drawCharts();
   }
 
-  _init()
-  {
+  _init() {
     setInterval(() => {
       let myCoinId = this._route.snapshot.paramMap.get('id');
       this.listService.getAllCurrency().subscribe(
         data => {
           this.allCurrency = data.data;
-  
+
           for (let element in this.allCurrency) {
             this.arr.push(this.allCurrency[element]);
           }
           this.arrCopy = this.arr;
           this.selectedCoin = this.arrCopy.filter(word => word.id == myCoinId);
           let date = new Date(this.selectedCoin[0].last_updated * 1000);
-            var hours = date.getHours();
-  
-            var priceChange = this.selectedCoin[0].quotes.USD.percent_change_1h;
-            var price = this.selectedCoin[0].quotes.USD.price;
-            if (priceChange <= 0) {
-              price = price + price * (priceChange / 100);
-            }
-            else {
-              price = price - price * (priceChange / 100);
-            }
-            this.timelines.push({
-              "hourGraph": hours,
-              "priceGraph": price
-            });
-            if (this.timelines.length === this.TIMELINE_LENGTH) {
-              this.timelines.shift();
-            }
-          }, this.TIME_INTERVAL);
+          let hours = date.getHours();
+          let priceChange = this.selectedCoin[0].quotes.USD.percent_change_1h;
+          let price = this.selectedCoin[0].quotes.USD.price;
+          if (priceChange <= 0) {
+            price = price + price * (priceChange / 100);
+          }
+          else {
+            price = price - price * (priceChange / 100);
+          }
+          this.timelines.push({
+            "hourGraph": hours,
+            "priceGraph": price
+          });
+          if (this.timelines.length === this.TIMELINE_LENGTH) {
+            this.timelines.shift();
+          }
+          this.drawCharts();
+          console.log(this.timelines, "time line array")
         },
-  
         error => {
-          console.log(error);
+          console.log("error:" `${error}`)
         }
-  
-      )
-
-  // console.log(this.timelines);
+      );
+    }, this.TIME_INTERVAL);
   }
 
-
-
-
-
+  drawCharts() {
+    this.chart = new Chart("canvas", {
+      type: 'bar',
+      data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    })
+  }
 }

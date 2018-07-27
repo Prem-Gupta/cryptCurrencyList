@@ -86,18 +86,16 @@ export class ListViewComponent implements OnInit {
 
   }
   isActive(j) {
-
     return this.selected === j;
   };
 
 
   chartPrice(name): void {
-
-    this.router.navigate(['/pricechart',name.id]);
+    this.router.navigate(['/priceChart',name.id]);
   }
 
 
   editCoin(name: any) {
-   
+
   }
 }

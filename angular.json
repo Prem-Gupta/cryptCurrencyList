@@ -25,17 +25,17 @@
             "styles": [
               "src/styles.css",
 
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/datatables.net-dt/css/jquery.dataTables.css",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/font-awesome/css/font-awesome.css",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/ion-rangeslider/css/ion.rangeSlider.css",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "./node_modules/font-awesome/css/font-awesome.css",
+              "./node_modules/ion-rangeslider/css/ion.rangeSlider.css",
+              "./node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/datatables.net/js/jquery.dataTables.js",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
-              "/home/mwf33/Documents/Prem_frontend/Project/project_2/Crypto-Currency-List/node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/datatables.net/js/jquery.dataTables.js",
+              "./node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
