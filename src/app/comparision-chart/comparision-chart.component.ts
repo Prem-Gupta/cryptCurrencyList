@@ -19,7 +19,7 @@ export class ComparisionChartComponent implements OnInit {
   public timelines2 = [];
   date_1 = [];
   date_2 = [];
-  public TIME_INTERVAL =3000;
+  public TIME_INTERVAL =4000;
   public TIMELINE_LENGTH = 12;
   public PriceData1 = [];
   public PriceData2 = [];
@@ -28,13 +28,14 @@ export class ComparisionChartComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) { }
 
   ngOnInit() {
+   
     this._init();
     this.drawCharts();
   }
 
   _init() {
     setInterval(() => {
-
+      localStorage.clear();
       // Both currency id 
       let myCoinId1 = this._route.snapshot.paramMap.get('id1');
       let myCoinId2 = this._route.snapshot.paramMap.get('id2');
@@ -122,7 +123,7 @@ export class ComparisionChartComponent implements OnInit {
       data: {
         labels: [0,2,4,6,8,10,12,14,16,18,20,22],
         datasets: [{
-          label: "My First dataset",
+          label: "First static data",
           data: [0, 10, 15, 42, 20, 30, 45,12,80,65,24,42],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -135,7 +136,7 @@ export class ComparisionChartComponent implements OnInit {
           borderColor: 'rgb(255, 99, 132)'
        
       },{
-          label: "My second dataset",
+          label: "Second static data",
           data: [20, 15, 27, 19, 40, 30, 55,33,67,29,12,87],
           backgroundColor: [
             'rgba(25, 99, 132, 0.2)',

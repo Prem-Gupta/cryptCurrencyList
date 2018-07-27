@@ -17,23 +17,24 @@ export class PriceChartComponent implements OnInit {
   public arrCopy = [];
   chart2 = [];
   public timelines = [];
-  date_1 = [];
+  date_3 = [];
   public TIME_INTERVAL =3000;
   public TIMELINE_LENGTH = 12;
   public PriceData = [];
-  public key = 'id';
+  public key = 'id1';
 
   constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) {
   }
 
   ngOnInit() {
+  
     this._init();
     this.drawCharts();
   }
 
   _init() {
     setInterval(() => {
-
+            localStorage.clear();
       // get currency id from url 
       let myCoinId = this._route.snapshot.paramMap.get('id');
      
@@ -72,7 +73,7 @@ export class PriceChartComponent implements OnInit {
             this.timelines.shift();
           }
 
-          this.date_1 = JSON.parse(localStorage.getItem(this.key));
+          this.date_3 = JSON.parse(localStorage.getItem(this.key));
 
           // draw chart for coin 
           this.drawCharts();
@@ -90,10 +91,10 @@ export class PriceChartComponent implements OnInit {
     this.chart2 = new Chart("canvas", {
       type: 'line',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: [0,2,4,6,8,10,12,14,16,18,20,22],
         datasets: [{
           label: 'Price against 24 hours Timeline',
-          data: [12, 19, 3, 5, 2, 3],
+          data: [12, 19, 3, 15, 22,40,90,55,75,35,45,65],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
