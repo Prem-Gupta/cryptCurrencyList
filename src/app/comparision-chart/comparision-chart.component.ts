@@ -19,7 +19,7 @@ export class ComparisionChartComponent implements OnInit {
   public timelines2 = [];
   date_1 = [];
   date_2 = [];
-  public TIME_INTERVAL =5000;
+  public TIME_INTERVAL =3000;
   public TIMELINE_LENGTH = 12;
   public PriceData1 = [];
   public PriceData2 = [];
