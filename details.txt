@@ -1,0 +1,5 @@
+1. comparision-chart Component :  It shows two line graph for two data sets ;
+2. price-chart Component : Its shows single line graph ;
+3. fav-list Component : Its shows fav list coin which is selected by User . These coin stored in local storage .
+4. list-view Component : its shows all coins details .
+5. listCurrency Service : By this service, get all currency data and used in component;

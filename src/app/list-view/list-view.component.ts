@@ -2,14 +2,14 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { ListcurrencyService } from '../listcurrency.service';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 
 
 @Component({
   selector: 'app-list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.css'],
-  providers: [Location]
+  providers: []
 })
 export class ListViewComponent implements OnInit {
   public key: string;
@@ -24,7 +24,7 @@ export class ListViewComponent implements OnInit {
   public favData = [];
   public favourtiCoin = [];
   public selectedCoin = [];
-
+  public comparsionId = [];
   constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) { }
 
   ngOnInit() {
@@ -51,9 +51,10 @@ export class ListViewComponent implements OnInit {
   }
   p: number = 1;
 
+// for range slider function
+
   public myOnFinish(event1, type) {
-    // console.log(event1.from);
-    // console.log(event1.to);
+ 
 
     let min = event1.from;
     let max = event1.to;
@@ -76,9 +77,9 @@ export class ListViewComponent implements OnInit {
 
 
   }
-
+// fav selected coin in local storage
   onSelect(j) {
-    // console.log(j);
+  
     let key = 'id';
     this.favData.push(j);
     localStorage.setItem(key, JSON.stringify(this.favData));
@@ -94,8 +95,35 @@ export class ListViewComponent implements OnInit {
     this.router.navigate(['/priceChart',name.id]);
   }
 
-
-  editCoin(name: any) {
-
+  // function for select coin by checkbox 
+  onChange(id: number, isChecked: boolean)
+  {
+    if (isChecked) {
+      this.comparsionId.push(id);
+    } else{
+      this.comparsionId.splice(0,this.comparsionId.length);
+    
+      if (isChecked) {
+        this.comparsionId.push(id);
+    }
   }
+}
+  
+// navigate comparison chart component 
+  OnSelectCurrency() 
+  {
+    if(this.comparsionId.length >2)
+    {
+     alert("Please select only two currency");
+     location.reload(true);
+
+    }
+    else{
+      console.log(this.comparsionId);
+      this.router.navigate(['/comparisionView',this.comparsionId[0],this.comparsionId[1]]);
+
+    }
+    
+  }
+
 }

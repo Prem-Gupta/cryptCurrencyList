@@ -15,6 +15,7 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import {RouterModule,Routes} from '@angular/router';
 // import { ChartModule } from 'angular-highcharts';
 import { DataTablesModule } from 'angular-datatables';
+import { ComparisionChartComponent } from './comparision-chart/comparision-chart.component';
 
 
 
@@ -24,7 +25,8 @@ import { DataTablesModule } from 'angular-datatables';
     AppComponent,
     ListViewComponent,
     PriceChartComponent,
-    FavListComponent
+    FavListComponent,
+    ComparisionChartComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { DataTablesModule } from 'angular-datatables';
     RouterModule.forRoot([
       {path :'priceChart/:id', component: PriceChartComponent},
       {path :'listView', component: ListViewComponent},
+      {path :'comparisionView/:id1/:id2', component: ComparisionChartComponent},
       {path :'favView', component: FavListComponent},
       {path :'',pathMatch: 'full', component: FavListComponent}
 

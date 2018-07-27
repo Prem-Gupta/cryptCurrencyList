@@ -15,11 +15,13 @@ export class PriceChartComponent implements OnInit {
   public allCurrency = [];
   public arr = [];
   public arrCopy = [];
-  chart = [];
-  timelines = [];
+  chart2 = [];
+  public timelines = [];
   date_1 = [];
-  public TIME_INTERVAL = 3000;
+  public TIME_INTERVAL =1000;
   public TIMELINE_LENGTH = 12;
+  public PriceData = [];
+  public key = 'id';
 
   constructor(private _route: ActivatedRoute, private router: Router, public listService: ListcurrencyService) {
   }
@@ -31,7 +33,10 @@ export class PriceChartComponent implements OnInit {
 
   _init() {
     setInterval(() => {
+
+      // get currency id from url 
       let myCoinId = this._route.snapshot.paramMap.get('id');
+     
       this.listService.getAllCurrency().subscribe(
         data => {
           this.allCurrency = data.data;
@@ -40,7 +45,11 @@ export class PriceChartComponent implements OnInit {
             this.arr.push(this.allCurrency[element]);
           }
           this.arrCopy = this.arr;
+
+
+         // get currency data which id passed in url for graph
           this.selectedCoin = this.arrCopy.filter(word => word.id == myCoinId);
+     
           let date = new Date(this.selectedCoin[0].last_updated * 1000);
           let hours = date.getHours();
           let priceChange = this.selectedCoin[0].quotes.USD.percent_change_1h;
@@ -55,26 +64,35 @@ export class PriceChartComponent implements OnInit {
             "hourGraph": hours,
             "priceGraph": price
           });
+        
+          this.PriceData.push(this.timelines);
+           localStorage.setItem(this.key, JSON.stringify(this.PriceData));
+         
           if (this.timelines.length === this.TIMELINE_LENGTH) {
             this.timelines.shift();
           }
+
+          this.date_1 = JSON.parse(localStorage.getItem(this.key));
+
+          // draw chart for coin 
           this.drawCharts();
-          console.log(this.timelines, "time line array")
+          console.log();
         },
         error => {
-          console.log("error:" `${error}`)
+          console.log(error);
         }
       );
     }, this.TIME_INTERVAL);
   }
+ 
 
   drawCharts() {
-    this.chart = new Chart("canvas", {
-      type: 'bar',
+    this.chart2 = new Chart("canvas", {
+      type: 'line',
       data: {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
-          label: '# of Votes',
+          label: 'Price against 24 hours Timeline',
           data: [12, 19, 3, 5, 2, 3],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

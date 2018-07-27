@@ -37,8 +37,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let items of arr | orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" (click)="editCoin($event)" >
-            <td> {{ i+1 }}  <input type="checkbox" name="" value=" {{ items.id }}"></td>
+          <tr *ngFor="let items of arr | orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" >
+            <td> {{ i+1 }}  <input type="checkbox" (change)="onChange(items.id, $event.target.checked)"></td>
             <td >{{items.name}}</td>
             <td>{{items.symbol}}</td>
             <td>{{items.quotes.USD.price}}</td>
@@ -55,5 +55,11 @@
       </table>
       <pagination-controls (pageChange)="p = $event" style="float: right"></pagination-controls>
     </div>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-lg-12" >
+   <button class="btn btn-info" (click)="OnSelectCurrency()">Comparison View</button>
+    </div>
+
   </div>
 </div>
