@@ -40,13 +40,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AngularFontAwesomeModule,
     DataTablesModule,
     RouterModule.forRoot([
-      {path: '404', component: NotFoundComponent},
-      {path: '**', redirectTo: '/404'},
+      
       {path :'priceChart/:id', component: PriceChartComponent},
       {path :'listView', component: ListViewComponent},
       {path :'comparisionView/:id1/:id2', component: ComparisionChartComponent},
       {path :'favView', component: FavListComponent},
-      {path :'',pathMatch: 'full', component: FavListComponent}
+      {path :'',pathMatch: 'full',  redirectTo:'favView'},
+      {path:'**',component: NotFoundComponent}
 
     ])
   ],
