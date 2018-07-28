@@ -37,7 +37,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     Ng2OrderModule,
     NgxPaginationModule,
     IonRangeSliderModule,
-
     AngularFontAwesomeModule,
     DataTablesModule,
     RouterModule.forRoot([
