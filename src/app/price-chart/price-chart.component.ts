@@ -18,7 +18,7 @@ export class PriceChartComponent implements OnInit {
   chart2 = [];
   public timelines = [];
   date_3 = [];
-  public TIME_INTERVAL =3000;
+  public TIME_INTERVAL =3600;
   public TIMELINE_LENGTH = 12;
   public PriceData = [];
   public key = 'id1';

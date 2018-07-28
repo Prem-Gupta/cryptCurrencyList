@@ -16,6 +16,7 @@ import {RouterModule,Routes} from '@angular/router';
 // import { ChartModule } from 'angular-highcharts';
 import { DataTablesModule } from 'angular-datatables';
 import { ComparisionChartComponent } from './comparision-chart/comparision-chart.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -26,7 +27,8 @@ import { ComparisionChartComponent } from './comparision-chart/comparision-chart
     ListViewComponent,
     PriceChartComponent,
     FavListComponent,
-    ComparisionChartComponent
+    ComparisionChartComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,8 @@ import { ComparisionChartComponent } from './comparision-chart/comparision-chart
     AngularFontAwesomeModule,
     DataTablesModule,
     RouterModule.forRoot([
+      {path: '404', component: NotFoundComponent},
+      {path: '**', redirectTo: '/404'},
       {path :'priceChart/:id', component: PriceChartComponent},
       {path :'listView', component: ListViewComponent},
       {path :'comparisionView/:id1/:id2', component: ComparisionChartComponent},
